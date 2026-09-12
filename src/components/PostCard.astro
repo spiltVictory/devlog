@@ -1,0 +1,31 @@
+---
+import { withBase } from '../site.config';
+import { formatDate, readingTime } from '../utils';
+import type { Post } from '../posts';
+
+interface Props {
+  entry: Post;
+  showTags?: boolean;
+}
+
+const { entry, showTags = true } = Astro.props;
+const { title, description, pubDate, tags } = entry.data;
+const href = withBase(`blog/${entry.id}/`);
+---
+
+<article class="post-card">
+  <h3><a href={href}>{title}</a></h3>
+  {description && <p>{description}</p>}
+  <div class="post-meta">
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    <span>{readingTime(entry.body ?? '')} 分钟</span>
+    {
+      showTags &&
+        tags.map((tag) => (
+          <a class="tag" href={withBase(`tags/${tag}/`)}>
+            {tag}
+          </a>
+        ))
+    }
+  </div>
+</article>

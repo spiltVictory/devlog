@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE, withBase } from '../site.config';
+import { collectTags, getPosts } from '../posts';
+
+const posts = await getPosts();
+const latest = posts.slice(0, 5);
+const tags = collectTags(posts).slice(0, 12);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <h1>把开发过程写下来</h1>
+    <p>{SITE.description}</p>
+  </section>
+
+  <div class="section-title">
+    <h2>最新日志</h2>
+    <a href={withBase('blog/')}>查看全部 →</a>
+  </div>
+
+  {
+    latest.length > 0 ? (
+      <ul class="post-list">
+        {latest.map((entry) => (
+          <li>
+            <PostCard entry={entry} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="callout">
+        <p>还没有文章。在 <code>src/content/blog/</code> 里新建一个 Markdown 文件，就会出现在这里。</p>
+      </div>
+    )
+  }
+
+  {
+    tags.length > 0 && (
+      <div class="section-title">
+        <h2>按标签浏览</h2>
+        <a href={withBase('tags/')}>全部标签 →</a>
+      </div>
+    )
+  }
+
+  {
+    tags.length > 0 && (
+      <div class="tag-cloud">
+        {tags.map(({ tag, count }) => (
+          <a class="tag" href={withBase(`tags/${tag}/`)}>
+            {tag} · {count}
+          </a>
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>

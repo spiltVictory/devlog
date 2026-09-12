@@ -1,0 +1,80 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../site.config';
+import { formatDate, readingTime } from '../../utils';
+import { getPosts } from '../../posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = entry.data;
+const { Content } = await render(entry);
+
+const posts = await getPosts();
+const index = posts.findIndex((post) => post.id === entry.id);
+const newer = index > 0 ? posts[index - 1] : undefined;
+const older = index < posts.length - 1 ? posts[index + 1] : undefined;
+---
+
+<BaseLayout title={title} description={description} publishedAt={pubDate}>
+  <article>
+    <header class="post-header">
+      <h1>{title}</h1>
+      <div class="post-meta">
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        <span>{readingTime(entry.body ?? '')} 分钟</span>
+        {
+          updatedDate && (
+            <span>更新于 {formatDate(updatedDate)}</span>
+          )
+        }
+        {
+          tags.map((tag) => (
+            <a class="tag" href={withBase(`tags/${tag}/`)}>
+              {tag}
+            </a>
+          ))
+        }
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="post-nav">
+      {
+        older ? (
+          <a href={withBase(`blog/${older.id}/`)}>
+            <span>上一篇</span>
+            {older.data.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        newer ? (
+          <a href={withBase(`blog/${newer.id}/`)}>
+            <span>下一篇</span>
+            {newer.data.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </div>
+
+    <div class="post-footer">
+      <a href={withBase('blog/')}>← 返回全部日志</a>
+      <a href={withBase('')}>回到首页</a>
+    </div>
+  </article>
+</BaseLayout>

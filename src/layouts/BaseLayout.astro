@@ -1,0 +1,98 @@
+---
+import { SITE, withBase } from '../site.config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** 文章页传入发布日期，用于 og 标签 */
+  publishedAt?: Date;
+}
+
+const { title, description = SITE.description, publishedAt } = Astro.props;
+const pageTitle = title ? `${title} · ${SITE.title}` : `${SITE.title} · ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href={withBase('rss.xml')} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={title ? 'article' : 'website'} />
+    <meta property="og:url" content={canonical} />
+    {publishedAt && (
+      <meta property="article:published_time" content={publishedAt.toISOString()} />
+    )}
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container wide inner">
+        <a class="brand" href={withBase()}>
+          {SITE.title}
+          <small>{SITE.tagline}</small>
+        </a>
+        <nav class="site-nav">
+          <a href={withBase('blog/')}>全部日志</a>
+          <a href={withBase('tags/')}>标签</a>
+          <a href={withBase('about/')}>关于</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container inner">
+        <span>© {new Date().getFullYear()} {SITE.author}</span>
+        <span>
+          <a href={withBase('rss.xml')}>RSS</a>
+          ·
+          <a href={SITE.repo}>源码</a>
+          ·
+          <a href={SITE.github}>GitHub</a>
+        </span>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script>
+  </body>
+</html>
