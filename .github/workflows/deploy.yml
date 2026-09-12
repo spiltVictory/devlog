@@ -1,8 +1,18 @@
+# 备用的自动部署流程。
+#
+# 说明：当前账号因计费问题无法运行 GitHub Actions（"account is locked due to
+# a billing issue"），因此这个工作流暂时是手动触发，平时发布请用 `npm run deploy`。
+#
+# 等计费问题解决后，把下面 on: 里的 push 两行恢复，就可以恢复「推代码即自动发布」：
+#
+#   on:
+#     push:
+#       branches: [main]
+#     workflow_dispatch:
+
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

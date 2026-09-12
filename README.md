@@ -34,15 +34,22 @@ npm run dev          # 打开 http://localhost:4321/devlog/
 
 ## 发布
 
-写完直接提交推送就行，剩下的是自动的：
+写完文章后，先保存到 git，再发布：
 
 ```sh
 git add .
 git commit -m "devlog: 第 2 期"
 git push
+npm run deploy
 ```
 
-推送到 `main` 分支后，GitHub Actions 会自动构建并发布，大约一两分钟后线上就能看到。
+`npm run deploy` 会自动构建并把结果推送到 `gh-pages` 分支，一两分钟后线上更新。
+
+> **为什么不用 GitHub Actions 自动发布？**
+> 当前账号因为计费问题被 GitHub 锁定了 Actions（运行时报错 "account is locked
+> due to a billing issue"），任何自动构建都跑不起来。等你在
+> https://github.com/settings/billing 处理完之后，把
+> `.github/workflows/deploy.yml` 里的 `push:` 触发改回来，就能恢复「推代码即自动发布」。
 
 ## 目录结构
 
