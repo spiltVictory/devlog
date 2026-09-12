@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开篇：为什么我要把一个游戏做出来，还要写下来 · spiltVictory Devlog</title><meta name="description" content="这个博客的第一篇。交代我为什么要开这个开发日志、这里会记录什么，以及接下来打算怎么更新。"><link rel="canonical" href="https://spiltvictory.github.io/devlog/blog/hello-devlog/"><link rel="icon" type="image/svg+xml" href="/devlog/favicon.svg"><link rel="alternate" type="application/rss+xml" title="spiltVictory Devlog" href="/devlog/rss.xml"><meta name="generator" content="Astro v7.3.2"><meta property="og:title" content="开篇：为什么我要把一个游戏做出来，还要写下来 · spiltVictory Devlog"><meta property="og:description" content="这个博客的第一篇。交代我为什么要开这个开发日志、这里会记录什么，以及接下来打算怎么更新。"><meta property="og:type" content="article"><meta property="og:url" content="https://spiltvictory.github.io/devlog/blog/hello-devlog/"><meta property="article:published_time" content="2026-09-12T00:00:00.000Z"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/devlog/_astro/BaseLayout.DM6Y7CQg.css"></head><body><header class="site-header"><div class="container wide inner"><a class="brand" href="/devlog/">spiltVictory Devlog<small>游戏开发日志</small></a><nav class="site-nav"><a href="/devlog/blog/">全部日志</a><a href="/devlog/tags/">标签</a><a href="/devlog/about/">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>◐</button></div></header><main class="container"><article><header class="post-header"><h1>开篇：为什么我要把一个游戏做出来，还要写下来</h1><div class="post-meta"><time datetime="2026-09-12T00:00:00.000Z">2026-09-12</time><span>1 分钟</span><a class="tag" href="/devlog/tags/开发日志/">开发日志</a><a class="tag" href="/devlog/tags/随笔/">随笔</a></div></header><div class="prose"><p>这个博客今天正式开张了。</p>
+<h2 id="为什么又开一个博客">为什么又开一个博客</h2>
+<p>几年前我也有过一个博客，写着写着就停了。这次目的不太一样：不是“写给人看”，而是<strong>留下一份开发过程的记录</strong>。</p>
+<p>一个人做游戏最麻烦的地方不是技术，而是记忆。做到第三个月的时候，你很难说清楚：</p>
+<ul>
+<li>当时为什么放弃那个玩法方案？</li>
+<li>那个崩溃 bug 到底改了哪里？</li>
+<li>这个数值是怎么定下来的？</li>
+</ul>
+<p>这些问题，当时的答案都在脑子里；三个月后，全没了。</p>
+<h2 id="这里会写什么">这里会写什么</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发日志</td>
+<td>这一段时间做了什么、遇到什么问题、下一步做什么</td>
+</tr>
+<tr>
+<td>技术笔记</td>
+<td>引擎、渲染、性能、工具链里解决掉的具体问题</td>
+</tr>
+<tr>
+<td>设计与美术</td>
+<td>玩法、关卡、美术风格、音效上的取舍</td>
+</tr>
+<tr>
+<td>复盘</td>
+<td>阶段性总结：哪些判断错了，哪些成了</td>
+</tr>
+</tbody>
+</table>
+<h2 id="更新节奏">更新节奏</h2>
+<p>我的目标不高：<strong>每完成一小块内容就写一篇</strong>，哪怕只有几百字。写不出来的时候，说明我这一段时间其实没做出东西——这本身就是很有用的信号。</p>
+<h2 id="怎么订阅">怎么订阅</h2>
+<p>网站右上角有 <a href="/devlog/rss.xml">RSS</a>，用任何阅读器都能订阅。RSS 的好处是不用社交平台、不用推送、不被打断，新文章自己会出现在你的阅读器里。</p>
+</div><div class="post-nav"><a href="/devlog/blog/how-to-write-a-devlog/"><span>上一篇</span>开发日志怎么写才有用：一份可以直接抄的模板</a><a href="/devlog/blog/devlog-001-zai-shen-yi-mi/"><span>下一篇</span>开发日志 001：八轮试玩之后，我的游戏才终于像游戏了</a></div><div class="post-footer"><a href="/devlog/blog/">← 返回全部日志</a><a href="/devlog/">回到首页</a></div></article></main><footer class="site-footer"><div class="container inner"><span>© 2026 Yang Zhao Ji</span><span><a href="/devlog/rss.xml">RSS</a>·<a href="https://github.com/spiltVictory/devlog">源码</a>·<a href="https://github.com/spiltVictory">GitHub</a></span></div></footer><script>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script></body></html>

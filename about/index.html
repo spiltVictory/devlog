@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>关于 · spiltVictory Devlog</title><meta name="description" content="关于这个博客和它的作者。"><link rel="canonical" href="https://spiltvictory.github.io/devlog/about/"><link rel="icon" type="image/svg+xml" href="/devlog/favicon.svg"><link rel="alternate" type="application/rss+xml" title="spiltVictory Devlog" href="/devlog/rss.xml"><meta name="generator" content="Astro v7.3.2"><meta property="og:title" content="关于 · spiltVictory Devlog"><meta property="og:description" content="关于这个博客和它的作者。"><meta property="og:type" content="article"><meta property="og:url" content="https://spiltvictory.github.io/devlog/about/"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/devlog/_astro/BaseLayout.DM6Y7CQg.css"></head><body><header class="site-header"><div class="container wide inner"><a class="brand" href="/devlog/">spiltVictory Devlog<small>游戏开发日志</small></a><nav class="site-nav"><a href="/devlog/blog/">全部日志</a><a href="/devlog/tags/">标签</a><a href="/devlog/about/">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>◐</button></div></header><main class="container"><section class="hero"><h1>关于</h1><p>这个博客用来记录我做游戏的过程。</p></section><div class="prose"><h2>这个博客是什么</h2><p>这里是我的游戏开发日志。写它的理由很简单：一个人做游戏很容易在几个月的开发里忘记自己做过什么、 为什么这么做。把过程写下来，既能复盘，也能在自己卡住的时候回头看看走过的路。</p><h2>写什么</h2><ul><li><strong>开发日志</strong>：这一段时间做了什么、踩了什么坑、下一步计划</li><li><strong>技术笔记</strong>：引擎、渲染、性能优化、工具链里解决掉的具体问题</li><li><strong>设计与美术</strong>：玩法设计、关卡、美术风格、音效的取舍过程</li><li><strong>复盘</strong>：项目结束或阶段性总结，哪些想法是对的、哪些是自嗨</li></ul><h2>关于我</h2><p>（这里待补充：以前的开发经历、现在在做什么游戏、平时用什么工具。）</p><h2>联系</h2><ul><li>GitHub：<a href="https://github.com/spiltVictory">@Yang Zhao Ji</a></li><li>邮件：（待补充）</li></ul></div></main><footer class="site-footer"><div class="container inner"><span>© 2026 Yang Zhao Ji</span><span><a href="/devlog/rss.xml">RSS</a>·<a href="https://github.com/spiltVictory/devlog">源码</a>·<a href="https://github.com/spiltVictory">GitHub</a></span></div></footer><script>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script></body></html>

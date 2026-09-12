@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>示例：第 1 期开发日志（把这篇改成你自己的） · spiltVictory Devlog</title><meta name="description" content="这是一篇格式示例，展示一篇开发日志长什么样。直接复制这篇的内容，把占位文字换成你的实际进度就行。"><link rel="canonical" href="https://spiltvictory.github.io/devlog/blog/devlog-001-example/"><link rel="icon" type="image/svg+xml" href="/devlog/favicon.svg"><link rel="alternate" type="application/rss+xml" title="spiltVictory Devlog" href="/devlog/rss.xml"><meta name="generator" content="Astro v7.3.2"><meta property="og:title" content="示例：第 1 期开发日志（把这篇改成你自己的） · spiltVictory Devlog"><meta property="og:description" content="这是一篇格式示例，展示一篇开发日志长什么样。直接复制这篇的内容，把占位文字换成你的实际进度就行。"><meta property="og:type" content="article"><meta property="og:url" content="https://spiltvictory.github.io/devlog/blog/devlog-001-example/"><meta property="article:published_time" content="2026-09-12T00:00:00.000Z"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/devlog/_astro/BaseLayout.DM6Y7CQg.css"></head><body><header class="site-header"><div class="container wide inner"><a class="brand" href="/devlog/">spiltVictory Devlog<small>游戏开发日志</small></a><nav class="site-nav"><a href="/devlog/blog/">全部日志</a><a href="/devlog/tags/">标签</a><a href="/devlog/about/">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>◐</button></div></header><main class="container"><article><header class="post-header"><h1>示例：第 1 期开发日志（把这篇改成你自己的）</h1><div class="post-meta"><time datetime="2026-09-12T00:00:00.000Z">2026-09-12</time><span>1 分钟</span><a class="tag" href="/devlog/tags/开发日志/">开发日志</a><a class="tag" href="/devlog/tags/示例/">示例</a></div></header><div class="prose"><blockquote>
+<p>这是一篇<strong>格式示例</strong>。把下面这些段落的占位内容替换成你自己的进度，就是一篇合格的开发日志了。</p>
+</blockquote>
+<h2 id="本期做了什么">本期做了什么</h2>
+<ul>
+<li>搭好了项目骨架，确定用「你的引擎」+ 版本控制管理</li>
+<li>实现了角色移动和镜头跟随，能在一个测试场景里跑起来</li>
+<li>把美术资源导入流程跑通：从画图工具导出后直接进工程</li>
+</ul>
+<h2 id="遇到的问题">遇到的问题</h2>
+<p><strong>问题现象</strong>：角色在斜坡上移动时会抖动。</p>
+<p><strong>试过的方案</strong>：</p>
+<ol>
+<li>直接调高物理更新频率 —— 抖动变轻但没有消失</li>
+<li>把移动逻辑从物理回调里挪出来，改成每帧处理 —— 抖动消失，但斜坡上速度不对</li>
+</ol>
+<p><strong>最后怎么解决的</strong>：保留每帧处理，斜坡速度单独按法线方向投影修正。目前手感可以接受，先记为待观察。</p>
+<h2 id="截图">截图</h2>
+<p>（放一张当前进度截图：能跑起来的测试场景）</p>
+<h2 id="数值与决定">数值与决定</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>决定</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>移动速度</td>
+<td>220 像素/秒</td>
+<td>测试场景里跑一圈大约 6 秒，节奏合适</td>
+</tr>
+<tr>
+<td>镜头跟随</td>
+<td>带阻尼的平滑跟随</td>
+<td>硬跟随玩久了容易晕</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>先锁定 1280×720</td>
+<td>早期不做多分辨率适配，省时间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="下一步">下一步</h2>
+<ol>
+<li>加入攻击动作和命中判定</li>
+<li>做一个最简的敌人 AI（会追玩家、会攻击）</li>
+<li>把这两个功能串成一局可以“打一架”的流程</li>
+</ol>
+<h2 id="本期感想">本期感想</h2>
+<p>第一周最大的收获不是写了多少代码，而是确认了一件事：<strong>先做一个能跑起来的丑版本，比先把美术做好重要得多。</strong> 画面好看但玩不动的项目，基本没有救回来的可能。</p>
+</div><div class="post-nav"><a href="/devlog/blog/devlog-001-zai-shen-yi-mi/"><span>上一篇</span>开发日志 001：八轮试玩之后，我的游戏才终于像游戏了</a><span></span></div><div class="post-footer"><a href="/devlog/blog/">← 返回全部日志</a><a href="/devlog/">回到首页</a></div></article></main><footer class="site-footer"><div class="container inner"><span>© 2026 Yang Zhao Ji</span><span><a href="/devlog/rss.xml">RSS</a>·<a href="https://github.com/spiltVictory/devlog">源码</a>·<a href="https://github.com/spiltVictory">GitHub</a></span></div></footer><script>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script></body></html>

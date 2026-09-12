@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开发日志怎么写才有用：一份可以直接抄的模板 · spiltVictory Devlog</title><meta name="description" content="开发日志不是流水账。这篇给出一个五段式模板，以及让日志真正有用的几条写法建议。"><link rel="canonical" href="https://spiltvictory.github.io/devlog/blog/how-to-write-a-devlog/"><link rel="icon" type="image/svg+xml" href="/devlog/favicon.svg"><link rel="alternate" type="application/rss+xml" title="spiltVictory Devlog" href="/devlog/rss.xml"><meta name="generator" content="Astro v7.3.2"><meta property="og:title" content="开发日志怎么写才有用：一份可以直接抄的模板 · spiltVictory Devlog"><meta property="og:description" content="开发日志不是流水账。这篇给出一个五段式模板，以及让日志真正有用的几条写法建议。"><meta property="og:type" content="article"><meta property="og:url" content="https://spiltvictory.github.io/devlog/blog/how-to-write-a-devlog/"><meta property="article:published_time" content="2026-09-12T00:00:00.000Z"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/devlog/_astro/BaseLayout.DM6Y7CQg.css"></head><body><header class="site-header"><div class="container wide inner"><a class="brand" href="/devlog/">spiltVictory Devlog<small>游戏开发日志</small></a><nav class="site-nav"><a href="/devlog/blog/">全部日志</a><a href="/devlog/tags/">标签</a><a href="/devlog/about/">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>◐</button></div></header><main class="container"><article><header class="post-header"><h1>开发日志怎么写才有用：一份可以直接抄的模板</h1><div class="post-meta"><time datetime="2026-09-12T00:00:00.000Z">2026-09-12</time><span>2 分钟</span><a class="tag" href="/devlog/tags/开发日志/">开发日志</a><a class="tag" href="/devlog/tags/方法/">方法</a></div></header><div class="prose"><p>写开发日志最容易掉进的坑，是写成流水账：“今天改了 UI，明天调了数值。“写完自己都不想再看第二遍。</p>
+<p>一份有用的开发日志，至少要能回答三个问题：<strong>我做了什么、我卡在哪、下一步是什么。</strong></p>
+<h2 id="可以直接抄的模板">可以直接抄的模板</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">## 本期做了什么</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 具体到能看懂的程度：加了什么、改了什么、删了什么</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 遇到的问题</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 问题现象：</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 试过的方案：</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 最后怎么解决的（或者还没解决）：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 截图 / 视频</span></span>
+<span class="line"><span style="color:#6A737D">&lt;!-- 放一张进度截图，比写一百字都有用 --&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 数值与决定</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 做了哪些取舍，为什么这么选</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 下一步</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 下一期打算做什么，明确到 1~3 条</span></span></code></pre>
+<h2 id="几条真正有用的建议">几条真正有用的建议</h2>
+<h3 id="1-写下为什么不只是做了什么">1. 写下“为什么”，不只是“做了什么”</h3>
+<p>“敌人血量从 100 改成 60” 是流水账；“敌人血量从 100 改成 60，因为测试时发现玩家平均要打 8 秒才死，我想要的手感是 4 秒” 才是日志。</p>
+<p>三个月后你只会记得结论，记不住当时的推理过程。</p>
+<h3 id="2-截图比文字重要">2. 截图比文字重要</h3>
+<p>进度类日志里，一张截图的信息量远大于一段描述。养成习惯：<strong>每期至少放一张图</strong>。哪怕画面很丑，回头看的时候也是最有价值的部分。</p>
+<h3 id="3-把失败的部分也写下来">3. 把失败的部分也写下来</h3>
+<p>只记录成功的日志没有复盘价值。写下“这条路走不通”，下次就不会再走一遍。</p>
+<h3 id="4-明确写下没做完的">4. 明确写下“没做完的”</h3>
+<p>不要为了让日志好看而隐瞒进度。写清楚哪块是半成品，是给自己留的备忘录。</p>
+<h3 id="5-固定节奏而不是固定长度">5. 固定节奏，而不是固定长度</h3>
+<p>每周一篇 300 字，比“有灵感才写”要有效得多。写不出内容往往说明这一周没有实际推进，这本身就是要面对的事实。</p>
+<h2 id="什么时候不该写日志">什么时候不该写日志</h2>
+<p>如果你正处在一个需要长时间专注的阶段（比如重构核心系统），别为了写日志打断自己。<strong>先把这一块做完，再一次性补一篇</strong>，比强行每天写要有用。</p>
+</div><div class="post-nav"><span></span><a href="/devlog/blog/hello-devlog/"><span>下一篇</span>开篇：为什么我要把一个游戏做出来，还要写下来</a></div><div class="post-footer"><a href="/devlog/blog/">← 返回全部日志</a><a href="/devlog/">回到首页</a></div></article></main><footer class="site-footer"><div class="container inner"><span>© 2026 Yang Zhao Ji</span><span><a href="/devlog/rss.xml">RSS</a>·<a href="https://github.com/spiltVictory/devlog">源码</a>·<a href="https://github.com/spiltVictory">GitHub</a></span></div></footer><script>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script></body></html>

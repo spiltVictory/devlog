@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开发日志 001：八轮试玩之后，我的游戏才终于像游戏了 · spiltVictory Devlog</title><meta name="description" content="从&quot;一张表单&quot;到&quot;按住手指往下钻&quot;——《再深一米》立项第一天的八轮迭代记录，附三个用数据验证出来的发现。"><link rel="canonical" href="https://spiltvictory.github.io/devlog/blog/devlog-001-zai-shen-yi-mi/"><link rel="icon" type="image/svg+xml" href="/devlog/favicon.svg"><link rel="alternate" type="application/rss+xml" title="spiltVictory Devlog" href="/devlog/rss.xml"><meta name="generator" content="Astro v7.3.2"><meta property="og:title" content="开发日志 001：八轮试玩之后，我的游戏才终于像游戏了 · spiltVictory Devlog"><meta property="og:description" content="从&quot;一张表单&quot;到&quot;按住手指往下钻&quot;——《再深一米》立项第一天的八轮迭代记录，附三个用数据验证出来的发现。"><meta property="og:type" content="article"><meta property="og:url" content="https://spiltvictory.github.io/devlog/blog/devlog-001-zai-shen-yi-mi/"><meta property="article:published_time" content="2026-09-12T00:00:00.000Z"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/devlog/_astro/BaseLayout.DM6Y7CQg.css"></head><body><header class="site-header"><div class="container wide inner"><a class="brand" href="/devlog/">spiltVictory Devlog<small>游戏开发日志</small></a><nav class="site-nav"><a href="/devlog/blog/">全部日志</a><a href="/devlog/tags/">标签</a><a href="/devlog/about/">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换深浅色" data-theme-toggle>◐</button></div></header><main class="container"><article><header class="post-header"><h1>开发日志 001：八轮试玩之后，我的游戏才终于像游戏了</h1><div class="post-meta"><time datetime="2026-09-12T00:00:00.000Z">2026-09-12</time><span>6 分钟</span><a class="tag" href="/devlog/tags/开发日志/">开发日志</a><a class="tag" href="/devlog/tags/游戏设计/">游戏设计</a><a class="tag" href="/devlog/tags/数据/">数据</a></div></header><div class="prose"><p>今天立项了一个新项目，暂定名《再深一米》。</p>
+<p>一句话说清它是什么：<strong>你是深海打捞员。越往下越值钱，风险越高，但你可以随时上浮收手——问题是你能不能忍住。</strong></p>
+<p>这篇记录的是立项第一天发生的事。我原本以为第一天能写的是“搭好框架”，结果这一天全部花在了一件事上：<strong>把玩法从纸上改成一个能玩的东西，然后被它反复打脸。</strong></p>
+<h2 id="一我做的第一个原型被我自己的直觉否掉了">一、我做的第一个原型，被我自己的直觉否掉了</h2>
+<p>我先把核心规则做成了一个能点击的原型：屏幕上是当前深度、已打捞收益、下一层的风险百分比，两个按钮——“继续下潜”和“上浮结算”。点继续就按概率判定生死，点上浮就把钱收进口袋。</p>
+<p>我试玩了两分钟，感觉不对。</p>
+<p>问题不是玩法不好，而是<strong>它长得像一张表单</strong>。玩家的动作是“读数字 → 点按钮”，收手变成了一次点选，没有任何身体感。我当时的原话是：“这不像游戏，像在填一份风险问卷。”</p>
+<p>于是我把核心操作整个换掉了：</p>
+<p><strong>按住屏幕，手指往下拖就下潜，往上拖就上浮，左右拖就横向走位。</strong></p>
+<p>这么一改，两个东西活了：</p>
+<ul>
+<li><strong>收手变成了松开手指</strong>。按住不放，就是贪婪；松手，就是放弃。贪心从一个抽象概念变成了一个持续用力的动作。</li>
+<li><strong>回程变成了真实的路</strong>。上浮速度比下潜慢，你潜得越深，回家的路越长——这不需要我用数字吓唬你，你自己就能感觉到。</li>
+</ul>
+<h2 id="二八轮试玩八个真问题">二、八轮试玩，八个真问题</h2>
+<p>接下来的一整天就是“你试玩 → 提问题 → 我改 → 用数据验证”的循环。八个问题，没有一个是我自己想出来的。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>我发现的问题</th>
+<th>真正的原因</th>
+<th>怎么改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>水母会突然刷新在我身上，莫名扣氧</td>
+<td>生成位置用的是绝对范围，不是相对玩家前方</td>
+<td>改成只在玩家前方 25 米以外生成</td>
+</tr>
+<tr>
+<td>2</td>
+<td>风险梯度像二次函数，不是均匀上升</td>
+<td>危险数量随深度线性增长，但活动窗口固定，所以单位距离的遭遇率在上升</td>
+<td>改成分段固定间距：150 / 100 / 72 / 52 米</td>
+</tr>
+<tr>
+<td>3</td>
+<td>一趟遇到 50~60 个资源点，而背包只有四格</td>
+<td>密度和背包容量的比例完全失衡</td>
+<td>常驻数量降到 5 个、成簇分布，一趟 13~15 件</td>
+</tr>
+<tr>
+<td>4</td>
+<td>上浮的时候没法左右转向，只能飘着挨撞</td>
+<td>松手后手指离开屏幕，系统根本收不到输入</td>
+<td>改成“按住并朝手指方向移动”，上浮全程可转向</td>
+</tr>
+<tr>
+<td>5</td>
+<td>200 米还不够黑</td>
+<td>全黑点设在了 300 米</td>
+<td>暗度曲线改到 220 米全黑，光照半径收到两成</td>
+</tr>
+<tr>
+<td>6</td>
+<td>氧气太紧，我是被氧气逼回来的</td>
+<td>氧气变成了撤退计时器，夺走了玩家的决策权</td>
+<td>放宽氧气，改为加快变暗</td>
+</tr>
+<tr>
+<td>7</td>
+<td>氧气又太松了，四格背包一下就装满</td>
+<td>上一轮放过了头；背包相对宝物量太少</td>
+<td>氧气收回一档；背包四格改五格</td>
+</tr>
+<tr>
+<td>8</td>
+<td>一局只有 10 秒；上浮太慢（这个改了两次）</td>
+<td>速度参数整体过快 / 松手的惩罚太隐形</td>
+<td>速度砍半；上浮从 15 提到 32</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三三个用数据验证出来的发现">三、三个用数据验证出来的发现</h2>
+<p>有些问题靠感觉说不清，我就把生成规则和物理公式抽出来跑模拟。三个结论都很反直觉：</p>
+<h3 id="1-我几乎每一局都在被贴脸刷新">1. 我几乎每一局都在被“贴脸刷新”</h3>
+<p>400 局模拟结果：<strong>旧规则平均每局有 0.92 次“危险生物直接在玩家身上生成”</strong>。</p>
+<p>也就是说，玩家感觉到的“莫名被扣”不是错觉，是我生成逻辑的缺陷——它不是难度，是 bug。改后是 <strong>0 次</strong>。</p>
+<h3 id="2-越往下越难的曲线真的变成了二次函数">2. “越往下越难”的曲线，真的变成了二次函数</h3>
+<p>我原本以为难度是线性上升的。跑完模拟才发现：100-200 米那一段的遭遇量<strong>跳了 3.80 倍</strong>，之后每 100 米只增 1.2 倍左右。</p>
+<table>
+<thead>
+<tr>
+<th>深度区间</th>
+<th>遭遇数/局</th>
+<th>相对上一段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-100 m</td>
+<td>0.35</td>
+<td>—</td>
+</tr>
+<tr>
+<td>100-200 m</td>
+<td>1.31</td>
+<td><strong>3.80×</strong></td>
+</tr>
+<tr>
+<td>200-300 m</td>
+<td>2.06</td>
+<td>1.57×</td>
+</tr>
+<tr>
+<td>300-400 m</td>
+<td>2.59</td>
+<td>1.26×</td>
+</tr>
+<tr>
+<td>400-500 m</td>
+<td>3.28</td>
+<td>1.27×</td>
+</tr>
+</tbody>
+</table>
+<p>改成“分段固定密度”之后，增幅变成 1.72× → 1.36× → 1.21× → 1.11×，逐段递减。玩家的体验从“爬一条越来越陡的坡”变成“进入一层一层的新海域”。</p>
+<h3 id="3-上浮太慢的真正原因是松手的代价太隐形">3. “上浮太慢”的真正原因，是松手的代价太隐形</h3>
+<p>我先后把上浮速度从 15 提到 22、又提到 32，中途还怀疑是自己的物理模型有问题。用公式算了一遍才看明白：</p>
+<table>
+<thead>
+<tr>
+<th>从 400 米回水面</th>
+<th>耗时</th>
+<th>耗氧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按住手指往上游</td>
+<td>18.4 秒</td>
+<td>29</td>
+</tr>
+<tr>
+<td><strong>松开手指等它漂</strong></td>
+<td><strong>31.0 秒</strong></td>
+<td><strong>48</strong></td>
+</tr>
+</tbody>
+</table>
+<p>松手比主动游<strong>慢 68%、多耗 65% 的氧气</strong>。而“操作完了就松手”是所有人的本能动作——所以玩家感觉上浮慢，不是错觉，是<strong>游戏没有告诉我按住会更快</strong>。</p>
+<p>解决方式一半是数值（漂升从 8 提到 20），另一半是文案：新手提示从“松手 = 缓升”改成了”<strong>向上拖 = 快速上浮</strong> / 松手 = 只是慢慢飘”。</p>
+<h2 id="四最后定下来的手感参数">四、最后定下来的手感参数</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下潜 / 主动上浮 / 松手漂升</td>
+<td>26 / 32 / 20 米每秒</td>
+</tr>
+<tr>
+<td>氧气</td>
+<td>0.55 + 深度÷200 每秒，上限 100</td>
+</tr>
+<tr>
+<td>黑暗</td>
+<td>220 米全黑，光照半径收到两成</td>
+</tr>
+<tr>
+<td>背包</td>
+<td>5 格，装满自动换掉最便宜的那件</td>
+</tr>
+<tr>
+<td>宝物</td>
+<td>常驻 5 个成簇分布，一趟约 13~15 件，青/绿/金三档</td>
+</tr>
+<tr>
+<td>危险生物</td>
+<td>分段间距 150 / 100 / 72 / 52 米，只在玩家前方 25 米外生成</td>
+</tr>
+<tr>
+<td>一局时长</td>
+<td>约 38~60 秒</td>
+</tr>
+</tbody>
+</table>
+<h2 id="五这一天学到的三件事">五、这一天学到的三件事</h2>
+<p><strong>第一，玩家不是在“被迫撤退”，他是在“选择收手”——这两件事的差别决定了一款游戏有没有灵魂。</strong>
+当氧气是逼你回去的原因时，你只是被系统赶走；当画面越来越黑、生物越来越怪是你想上去的原因时，收手才是你自己的决定。</p>
+<p><strong>第二，比例比数值重要。</strong>
+我把宝物密度从“一趟 50<del>60 个”降到“13</del>15 个”，不是因为密了不好看，而是因为我只有 5 格背包。<strong>93% 的拾取都是无效动作的时候，玩家感受到的不是选择，是系统反复拒绝。</strong> 最后定下的规则是：一趟遇到的宝物总量 = 背包格数 × 2.5 ~ 3 倍。</p>
+<p><strong>第三，凡是能用数据验证的，别用感觉吵。</strong>
+这一天有三个结论是模拟跑出来的，每一个都和我的直觉相反。手感和审美是玩家的领域，但“每局遇到几个危险生物”“上浮要几秒”这类问题，算一遍就有答案。</p>
+<h2 id="六下一步">六、下一步</h2>
+<p>玩法数值冻结了，接下来是搭 Cocos Creator 项目，把原型里的规则搬进正式工程，接抖音小游戏的 SDK。</p>
+<p>硬性时间点：<strong>一个月内必须发布版本</strong>——平台规定小游戏名称只保留 30 天，过期会被释放。</p>
+<p>原型还能玩：本地起了个预览服务，改一次参数刷新就能看到效果。这种“改完立刻能试”的循环，是我这一天效率最高的原因。</p>
+</div><div class="post-nav"><a href="/devlog/blog/hello-devlog/"><span>上一篇</span>开篇：为什么我要把一个游戏做出来，还要写下来</a><a href="/devlog/blog/devlog-001-example/"><span>下一篇</span>示例：第 1 期开发日志（把这篇改成你自己的）</a></div><div class="post-footer"><a href="/devlog/blog/">← 返回全部日志</a><a href="/devlog/">回到首页</a></div></article></main><footer class="site-footer"><div class="container inner"><span>© 2026 Yang Zhao Ji</span><span><a href="/devlog/rss.xml">RSS</a>·<a href="https://github.com/spiltVictory/devlog">源码</a>·<a href="https://github.com/spiltVictory">GitHub</a></span></div></footer><script>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const current =
+            document.documentElement.dataset.theme ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try {
+            localStorage.setItem('theme', next);
+          } catch {}
+        });
+      })();
+    </script></body></html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>spiltVictory Devlog</title>
+    <link>https://spiltvictory.github.io/devlog/</link>
+    <description>一个游戏开发者的开发日志：每周进度、踩过的坑、技术笔记和复盘。记录从想法到能玩的那一天。</description>
+    <language>zh-CN</language>
+    <item>
+      <title>示例：第 1 期开发日志（把这篇改成你自己的）</title>
+      <link>https://spiltvictory.github.io/devlog/blog/devlog-001-example/</link>
+      <guid isPermaLink="true">https://spiltvictory.github.io/devlog/blog/devlog-001-example/</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这是一篇格式示例，展示一篇开发日志长什么样。直接复制这篇的内容，把占位文字换成你的实际进度就行。</description>
+    </item>
+    <item>
+      <title>开发日志 001：八轮试玩之后，我的游戏才终于像游戏了</title>
+      <link>https://spiltvictory.github.io/devlog/blog/devlog-001-zai-shen-yi-mi/</link>
+      <guid isPermaLink="true">https://spiltvictory.github.io/devlog/blog/devlog-001-zai-shen-yi-mi/</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>从&quot;一张表单&quot;到&quot;按住手指往下钻&quot;——《再深一米》立项第一天的八轮迭代记录，附三个用数据验证出来的发现。</description>
+    </item>
+    <item>
+      <title>开篇：为什么我要把一个游戏做出来，还要写下来</title>
+      <link>https://spiltvictory.github.io/devlog/blog/hello-devlog/</link>
+      <guid isPermaLink="true">https://spiltvictory.github.io/devlog/blog/hello-devlog/</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这个博客的第一篇。交代我为什么要开这个开发日志、这里会记录什么，以及接下来打算怎么更新。</description>
+    </item>
+    <item>
+      <title>开发日志怎么写才有用：一份可以直接抄的模板</title>
+      <link>https://spiltvictory.github.io/devlog/blog/how-to-write-a-devlog/</link>
+      <guid isPermaLink="true">https://spiltvictory.github.io/devlog/blog/how-to-write-a-devlog/</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>开发日志不是流水账。这篇给出一个五段式模板，以及让日志真正有用的几条写法建议。</description>
+    </item>
+  </channel>
+</rss>
